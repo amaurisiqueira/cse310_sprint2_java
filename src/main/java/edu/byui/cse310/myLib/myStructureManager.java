@@ -80,6 +80,32 @@ public class myStructureManager {
     return true;
   }
 
+
+public boolean complete(int myID)
+{
+
+  // if is invalid pointer, return false
+  if (allTasks == null)
+    return false;
+
+  int id = 0;
+  // looking for a last ID
+  for (int a = 0; a < allTasks.size(); a++)
+  {
+    // if in task id is equal my current ID
+    if (allTasks.get(a).getId() == myID)
+    {
+       // change status of my task
+       allTasks.get(a).setCompleted(true);
+        //(*allTasks)[a].completed = true;
+      break;
+    }
+  }
+
+  return true;
+}
+
+
   // list all tasks
   public void list() {
 

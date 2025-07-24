@@ -59,7 +59,7 @@ public final class App {
 
         // read keyboard
         Scanner scanner = new Scanner(System.in);
-        scanner.useDelimiter("\n"); // Ignorar el búfer
+        scanner.useDelimiter("\n"); // Ignore buffer
         description = scanner.next().trim();
 
         if (description.length() > 1) {
@@ -70,6 +70,30 @@ public final class App {
                 myStructure.add(description);
                 myStructure.destructor();
             }
+        }
+    }
+
+      public static void menuCompleteTask() {
+        Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\n"); // Ignore buffer
+        System.out.println("Complete a task ID");
+        System.out.println("----------------------------");
+        System.out.print("ID to Complete: ");
+        
+        String myID = scanner.nextLine().trim();  // leer línea y eliminar espacios al inicio/final
+        
+        int id = 0;
+        try {
+            id = Integer.parseInt(myID);
+        } catch (NumberFormatException e) {
+            // id inválido, no hacer nada o mostrar error si quieres
+        }
+        
+        if (id > 0) {
+            myStructureManager myAllTasks = new myStructureManager(FILENAME_TASK);
+            myAllTasks.complete(id);
+            // call manually the destructor 
+            myStructure.destructor();
         }
     }
 
