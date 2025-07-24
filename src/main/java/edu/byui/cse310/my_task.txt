@@ -1,0 +1,5 @@
+1|0|Learning C++
+2|1|Learning JAVA
+3|0|Learning Rust
+6|1|make a video
+7|0|Adjuste logic to JAVA
