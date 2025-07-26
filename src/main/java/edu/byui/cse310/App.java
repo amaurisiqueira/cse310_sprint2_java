@@ -34,9 +34,11 @@ public final class App {
                     break;
 
                 case 2:
+                    menuCompleteTask();
                     break;
 
                 case 3:
+                    menuDeleteTask();
                     break;
                 case 4:
                     menuListTask();
@@ -68,32 +70,52 @@ public final class App {
             if (myStructure != null) {
                 // Método para agregar una nueva tarea
                 myStructure.add(description);
+                // call manually the destructor
                 myStructure.destructor();
             }
         }
     }
 
-      public static void menuCompleteTask() {
+    public static void menuCompleteTask() {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n"); // Ignore buffer
         System.out.println("Complete a task ID");
         System.out.println("----------------------------");
         System.out.print("ID to Complete: ");
-        
-        String myID = scanner.nextLine().trim();  // leer línea y eliminar espacios al inicio/final
-        
+
+        String myID = scanner.nextLine().trim(); // leer línea y eliminar espacios al inicio/final
+
         int id = 0;
         try {
             id = Integer.parseInt(myID);
         } catch (NumberFormatException e) {
             // id inválido, no hacer nada o mostrar error si quieres
         }
-        
+
         if (id > 0) {
             myStructureManager myAllTasks = new myStructureManager(FILENAME_TASK);
             myAllTasks.complete(id);
-            // call manually the destructor 
-            myStructure.destructor();
+            // call manually the destructor
+            myAllTasks.destructor();
+        }
+    }
+
+    public static void menuDeleteTask() {
+        Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\n"); // Ignore buffer
+        System.out.println("Delete a task by ID");
+        System.out.println("----------------------------");
+        System.out.print("ID to delete: ");
+        String myID = scanner.nextLine();
+        int id = Integer.parseInt(myID.trim());
+
+        if (id > 0) {
+            myStructureManager myAllTasks = new myStructureManager(FILENAME_TASK);
+            if (myAllTasks != null) {
+                myAllTasks.del(id);
+                // call manually the destructor
+                myAllTasks.destructor();
+            }
         }
     }
 

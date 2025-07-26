@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import edu.byui.cse310.myLib.Task_t;
 
 public class myStructureManager {
@@ -80,31 +82,40 @@ public class myStructureManager {
     return true;
   }
 
+  public boolean complete(int myID) {
 
-public boolean complete(int myID)
-{
+    // if is invalid pointer, return false
+    if (allTasks == null)
+      return false;
 
-  // if is invalid pointer, return false
-  if (allTasks == null)
-    return false;
+    // looking for a last ID
+    for (int a = 0; a < allTasks.size(); a++) {
+      // if in task id is equal my current ID
+      if (allTasks.get(a).getId() == myID) {
+        // change status of my task
+        allTasks.get(a).setCompleted(true);
 
-  int id = 0;
-  // looking for a last ID
-  for (int a = 0; a < allTasks.size(); a++)
-  {
-    // if in task id is equal my current ID
-    if (allTasks.get(a).getId() == myID)
-    {
-       // change status of my task
-       allTasks.get(a).setCompleted(true);
-        //(*allTasks)[a].completed = true;
-      break;
+        break;
+      }
     }
+
+    return true;
   }
 
-  return true;
-}
+  public boolean del(int myID) {
+    if (allTasks == null) {
+      return false;
+    }
 
+    for (int i = 0; i < allTasks.size(); i++) {
+      if (allTasks.get(i).getId() == myID) {
+        allTasks.remove(i);
+        break;
+      }
+    }
+
+    return true;
+  }
 
   // list all tasks
   public void list() {
