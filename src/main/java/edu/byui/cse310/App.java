@@ -16,7 +16,7 @@ public final class App {
     }
 
     /**
-     * Says hello to the world.
+     * main menu
      * 
      * @param args The arguments of the program.
      */
